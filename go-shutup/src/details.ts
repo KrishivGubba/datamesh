@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import variables from '../output/variables.json'
 
 export class Thing {
     static called: number = 0;
@@ -38,6 +39,14 @@ export class Thing {
             }
         })
         
+    }
+
+    public readVariables(filepath: string = "") : string[]{
+        let varArr : string[] = [];
+        for (let i = 0; i < variables.Variables.length ; i++){
+            varArr.push(variables.Variables[i].VarName)
+        }
+        return varArr;
     }
 
     public getFileName(): string | undefined{

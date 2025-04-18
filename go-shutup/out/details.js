@@ -32,9 +32,13 @@ var __importStar = (this && this.__importStar) || (function () {
         return result;
     };
 })();
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Thing = void 0;
 const vscode = __importStar(require("vscode"));
+const variables_json_1 = __importDefault(require("../output/variables.json"));
 class Thing {
     static called = 0;
     editor; //TODO: eventually make this a private field cuz cLeAn cOde
@@ -64,6 +68,13 @@ class Thing {
                 editBuilder.insert(position, insertString);
             }
         });
+    }
+    readVariables(filepath = "") {
+        let varArr = [];
+        for (let i = 0; i < variables_json_1.default.Variables.length; i++) {
+            varArr.push(variables_json_1.default.Variables[i].VarName);
+        }
+        return varArr;
     }
     getFileName() {
         return this.editor?.document.fileName;

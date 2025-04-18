@@ -70,14 +70,14 @@ function activate(context) {
             vscode.window.showErrorMessage("Please run this on a Golang file.");
             return;
         }
-        let unusedVars = [];
         //TODO: logic to find all the variables, this will likely rqeuire parsing the Go file
         const extensionPath = context.extensionPath;
         const cliPath = path.join(extensionPath, "shutup.exe");
         const executeHere = extensionPath;
+        //this bit of code here will populate output/variables.json
         cp.execFile(cliPath, ['random'], {
-            cwd: executeHere, // 👈 sets working directory!
-            shell: true,
+            cwd: executeHere, // we've set executeHere to the root dir of the extension because that's where the output dir is.
+            shell: true, //idk why this arg is here.
         }, (error, stdout, stderr) => {
             if (error) {
                 plap.showMessage(error.message);
@@ -90,8 +90,7 @@ function activate(context) {
         if (filepath == undefined)
             plap.showError("Is this a file even? You're on your own.");
         //read from results.json
-        for (let i = 0; i < 10; i++)
-            unusedVars.push("somevariable");
+        let unusedVars = plap.readVariables();
         plap.insertVariables(unusedVars, 0);
     });
     //steps
