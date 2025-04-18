@@ -1,7 +1,9 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
-import {Thing} from './details'
+import {Thing} from './details';
+import * as cp from 'child_process';
+import * as path from 'path';
 
 //helper functions
 
@@ -43,6 +45,32 @@ export function activate(context: vscode.ExtensionContext) {
 		let unusedVars: string[] = [];
 
 		//TODO: logic to find all the variables, this will likely rqeuire parsing the Go file
+
+		const extensionPath = context.extensionPath;
+		const cliPath = path.join(extensionPath, "shutup.exe")
+		const executeHere = extensionPath;
+		cp.execFile(cliPath, ['random'],{
+            cwd: executeHere, // 👈 sets working directory!
+            shell: true,
+        } ,(error, stdout, stderr) => {
+			if (error){
+				plap.showMessage(error.message)
+				plap.showError("Brohte rin christ somethiwng wrong")
+			}
+
+			plap.showMessage("All good to go!")
+		})
+		
+
+		//TODO: do we even need this bit of code here? probably get rid of it
+		const filepath = plap.getCurrFilePath()
+		if (filepath == undefined)
+			plap.showError("Is this a file even? You're on your own.")
+
+		//read from results.json
+
+
+
 
 		for (let i = 0; i < 10; i++)
 			unusedVars.push("somevariable")

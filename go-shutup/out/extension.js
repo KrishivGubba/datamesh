@@ -39,6 +39,8 @@ exports.deactivate = deactivate;
 // Import the module and reference it with the alias vscode in your code below
 const vscode = __importStar(require("vscode"));
 const details_1 = require("./details");
+const cp = __importStar(require("child_process"));
+const path = __importStar(require("path"));
 //helper functions
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -70,6 +72,24 @@ function activate(context) {
         }
         let unusedVars = [];
         //TODO: logic to find all the variables, this will likely rqeuire parsing the Go file
+        const extensionPath = context.extensionPath;
+        const cliPath = path.join(extensionPath, "shutup.exe");
+        const executeHere = extensionPath;
+        cp.execFile(cliPath, ['random'], {
+            cwd: executeHere, // 👈 sets working directory!
+            shell: true,
+        }, (error, stdout, stderr) => {
+            if (error) {
+                plap.showMessage(error.message);
+                plap.showError("Brohte rin christ somethiwng wrong");
+            }
+            plap.showMessage("All good to go!");
+        });
+        //TODO: do we even need this bit of code here? probably get rid of it
+        const filepath = plap.getCurrFilePath();
+        if (filepath == undefined)
+            plap.showError("Is this a file even? You're on your own.");
+        //read from results.json
         for (let i = 0; i < 10; i++)
             unusedVars.push("somevariable");
         plap.insertVariables(unusedVars, 0);

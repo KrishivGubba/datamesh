@@ -1,0 +1,235 @@
+// package main
+
+// import (
+// 	"encoding/json"
+// 	"errors"
+// 	"fmt"
+// 	"math"
+// )
+
+// func main() {
+
+// 	var one, two int = 1, 1
+
+// 	fmt.Print(one, two)
+
+// 	fmt.Print(int64(math.Sin(11)))
+
+// 	const something = 1000
+
+// 	//loops
+// 	var i int
+// 	for i <= 4 {
+// 		fmt.Print(i)
+// 		i = i + 1
+// 	}
+
+// 	for i := 0; i < 5; i++ {
+// 		fmt.Print("random")
+// 	}
+
+// 	for i := range 22 {
+// 		fmt.Print("x")
+// 		i = i + 1 - 1
+// 		if i+1 == 2 {
+// 			break
+// 		}
+// 		continue
+// 	}
+
+// 	//conditionals
+
+// 	var thing bool = true
+// 	var other bool = false
+
+// 	if thing && other {
+// 		fmt.Print("wharever")
+// 	}
+
+// 	if 5+1 > 8 {
+// 		fmt.Print("ss")
+// 	} else if 5+1 < -1 {
+// 		fmt.Print("behe")
+// 	} else {
+// 		fmt.Print("can")
+// 	}
+
+// 	//switches
+
+// 	variable := 10
+
+// 	switch variable {
+// 	case 1:
+// 		fmt.Print("ba")
+// 	case 2:
+// 		fmt.Print("w")
+// 	default:
+// 		fmt.Print("raondom")
+// 	}
+
+// 	othervar := 11
+
+// 	switch {
+// 	case othervar > 1:
+// 		fmt.Print("ww")
+// 	default:
+// 		fmt.Print("sss")
+// 	}
+
+// 	//functions
+// 	tedbeneke := func(something int) int {
+// 		something = something + 1
+// 		return something
+// 	}
+
+// 	tedbeneke(1)
+
+// 	//arrays
+
+// 	var array [10]string
+// 	array[0] = "s"
+// 	length := len(array)
+// 	length = length + 1
+// 	fmt.Println(array)
+// 	cool := [2]int{1, 2}
+// 	cool[1] = 11
+
+// 	//easy print function
+// 	print := func(thing string) {
+// 		fmt.Print(thing)
+// 	}
+// 	println := func(thing string) {
+// 		fmt.Println(thing)
+// 	}
+
+// 	//slices, these are used more than arrays
+// 	var slice []string
+// 	slice = append(slice, "random")
+// 	otherslice := make([]int, 33) //make slice of specific length
+// 	print(slice[0])
+// 	println(slice[0])
+// 	otherslice[0] = 1
+
+// 	//maps
+
+// 	//NOTE: If the key doesn’t exist, the zero value of the value type is returned.
+
+// 	thingalin := make(map[string]string)
+// 	thingalin["ra"] = "s"
+// 	delete(thingalin, "ra")
+// 	clear(thingalin)
+
+// 	//check if somthing is IN the map
+
+// 	_, inthere := thingalin["11"]
+
+// 	fmt.Print(inthere)
+
+// 	//functions
+
+// 	//NOTE: must be defined at the package level, not within another function
+// 	output()
+
+// 	//pointers
+
+// 	what := 1
+
+// 	zeroval(&what) //the & is to get the reference of that variable
+
+// 	//structs
+
+// 	guy := dtype{"wht", 1, false}
+// 	// fmt.Print(guy)
+// 	fmt.Print(guy) // output: {wht 1 false}
+
+// 	otherling := struct { //anonymous structs, for single use
+// 		name   string
+// 		person bool
+// 	}{
+// 		"rex",
+// 		false,
+// 	}
+// 	fmt.Print(otherling)
+
+// 	//interfaces - GOTO line 168
+
+// 	dude(guy) //this is the method that only takes in things that implement the dummy interface
+
+// 	//errors
+
+// 	_, err := throwError(1)
+
+// 	if errors.Is(err, fmt.Errorf("blahblah")) {
+// 		fmt.Print("you can check to see if errors are matching?")
+// 	} else {
+// 		fmt.Print("whatnot")
+// 	}
+
+// 	//jsons
+
+// 	barry := Tester{Name: "barry", Age: 12}
+
+// 	ball, err := json.Marshal(barry)
+// 	fmt.Print(ball)
+
+// 	jsonString := `{"name":"Alice","age":25,"address":"123 Main St"}`
+
+// }
+
+// type dtype struct {
+// 	name  string
+// 	age   int
+// 	alive bool
+// }
+
+// func output() (int, string) {
+// 	return 1, "ss"
+// }
+
+// func zeroval(arg *int) {
+// 	*arg = 1 //this takes the inputted memory location, and changes the value at it
+// }
+
+// //making an interface
+
+// type dummy interface {
+// 	//add some methods
+// 	bum() int
+// 	what()
+// }
+
+// //implement both these methods for a struct
+
+// func (r dtype) bum() int {
+// 	return 1
+// }
+
+// func (r dtype) what() {
+// 	fmt.Print("s")
+// }
+
+// func dude(boy dummy) {
+// 	boy.bum()
+// 	boy.what()
+// }
+
+// // errors
+// func throwError(arg int) (int, error) {
+// 	var bad = fmt.Errorf("bad input") //sentinel error (predeclared error)
+// 	if arg == 1 {
+// 		return -1, errors.New("one won't work")
+// 	} else if arg < 0 {
+// 		return -1, bad
+// 	} else if arg == 20 {
+// 		return -1, fmt.Errorf("wrappable errors %w", bad) //use %w to wrap errors
+// 	}
+
+// 	return 200, nil
+// }
+
+// //json stuff
+
+// type Tester struct {
+// 	Name string `json: "name"` //capitalized means it is visible outside this package (to the json module)
+// 	Age  int    `json: "age"`
+// }

@@ -43,4 +43,8 @@ export class Thing {
     public getFileName(): string | undefined{
         return this.editor?.document.fileName;
     }
+
+    public getCurrFilePath(): string | undefined{
+        return this.editor?.document.uri.fsPath;
+    }
 }

@@ -68,6 +68,9 @@ class Thing {
     getFileName() {
         return this.editor?.document.fileName;
     }
+    getCurrFilePath() {
+        return this.editor?.document.uri.fsPath;
+    }
 }
 exports.Thing = Thing;
 //# sourceMappingURL=details.js.map
