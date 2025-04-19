@@ -6,6 +6,8 @@ package cmd
 import (
 	"encoding/json"
 	"fmt"
+	"go/parser"
+	"go/token"
 	"log"
 	"os"
 
@@ -76,4 +78,29 @@ func findAllUnused() {
 		log.Fatal("Error encoding JSON:", err)
 	}
 	fmt.Print("Successfully wrote all variables to output JSON.")
+}
+
+func something() {
+
+	fset := token.NewFileSet() // positions are relative to fset
+
+	src := `package foo
+
+			import (
+				"fmt"
+				"time"
+			)
+
+			func bar() {
+				fmt.Println(time.Now())
+			}`
+
+	// Parse src but stop after processing the imports.
+	f, err := parser.ParseFile(fset, "", src, parser.ImportsOnly)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	fmt.Print(f)
 }
