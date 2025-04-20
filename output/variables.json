@@ -2,28 +2,88 @@
   "Variables": [
     {
       "VarNames": [
-        "x"
+        "f",
+        "err"
       ],
-      "LineNumber": 14
+      "LineNumber": 98
     },
     {
       "VarNames": [
-        "a",
-        "b"
+        "fn",
+        "ok"
       ],
-      "LineNumber": 15
+      "LineNumber": 28
     },
     {
       "VarNames": [
-        "tree"
+        "valSpec",
+        "isValueSpec"
       ],
-      "LineNumber": 16
+      "LineNumber": 30
     },
     {
       "VarNames": [
-        "tree"
+        "file",
+        "_"
       ],
-      "LineNumber": 17
+      "LineNumber": 69
+    },
+    {
+      "VarNames": [
+        "hmap"
+      ],
+      "LineNumber": 71
+    },
+    {
+      "VarNames": [
+        "src"
+      ],
+      "LineNumber": 83
+    },
+    {
+      "VarNames": [
+        "fset"
+      ],
+      "LineNumber": 95
+    },
+    {
+      "VarNames": [
+        "fn",
+        "ok"
+      ],
+      "LineNumber": 21
+    },
+    {
+      "VarNames": [
+        "assign",
+        "ok"
+      ],
+      "LineNumber": 38
+    },
+    {
+      "VarNames": [
+        "ident",
+        "ok"
+      ],
+      "LineNumber": 40
+    },
+    {
+      "VarNames": [
+        "fset"
+      ],
+      "LineNumber": 50
+    },
+    {
+      "VarNames": [
+        "src"
+      ],
+      "LineNumber": 52
+    },
+    {
+      "VarNames": [
+        "myStruc"
+      ],
+      "LineNumber": 73
     }
   ]
 }

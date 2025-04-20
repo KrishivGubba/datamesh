@@ -1,12 +1,89 @@
 {
   "Variables": [
     {
-      "VarName": "Pluto",
+      "VarNames": [
+        "personName",
+        "personAge"
+      ],
+      "LineNumber": 83
+    },
+    {
+      "VarNames": [
+        "numbers"
+      ],
+      "LineNumber": 94
+    },
+    {
+      "VarNames": [
+        "numbers"
+      ],
+      "LineNumber": 95
+    },
+    {
+      "VarNames": [
+        "globalInt"
+      ],
+      "LineNumber": 11
+    },
+    {
+      "VarNames": [
+        "globalBool"
+      ],
+      "LineNumber": 12
+    },
+    {
+      "VarNames": [
+        "fullAddr"
+      ],
+      "LineNumber": 56
+    },
+    {
+      "VarNames": [
+        "name"
+      ],
+      "LineNumber": 63
+    },
+    {
+      "VarNames": [
+        "age"
+      ],
+      "LineNumber": 64
+    },
+    {
+      "VarNames": [
+        "pi"
+      ],
+      "LineNumber": 65
+    },
+    {
+      "VarNames": [
+        "address"
+      ],
+      "LineNumber": 74
+    },
+    {
+      "VarNames": [
+        "colors"
+      ],
+      "LineNumber": 90
+    },
+    {
+      "VarNames": [
+        "globalString"
+      ],
       "LineNumber": 10
     },
     {
-      "VarName": "bok",
-      "LineNumber": 29
+      "VarNames": [
+        "randomThing"
+      ],
+      "LineNumber": 13
+    },
+    {
+      "VarNames": [
+        "person"
+      ],
+      "LineNumber": 68
     }
   ]
 }

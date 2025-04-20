@@ -25,8 +25,9 @@ and usage of using your command. For example:
 Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
+	Args: cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		findAllUnused()
+		findAllUnused(args[0])
 	},
 }
 
@@ -95,36 +96,15 @@ func (r *Traveller) Visit(node ast.Node) ast.Visitor {
 	return r
 }
 
-func findAllUnused() {
+func findAllUnused(filepath string) {
 	//logic to find all the variables i guess
 
 	fset := token.NewFileSet()
 	hmap := make(map[int][]string)
 
-	//TODO: REMOVE THIS, JUST SAMPLE FOR NOW
-	src := `package foo
-	
-	import (
-		"fmt"
-		"time"
-	)
-
-	type body struct{
-		hands int
-		legs int
-	}
-
-	func bar() {
-		x := 1
-		a, b := 1, 2
-		var tree int
-		tree = 2
-		fmt.Println(time.Now())
-	}`
-
 	//load fset
 
-	f, err := parser.ParseFile(fset, "", src, parser.ParseComments)
+	f, err := parser.ParseFile(fset, filepath, nil, parser.ParseComments)
 
 	if err != nil {
 		return

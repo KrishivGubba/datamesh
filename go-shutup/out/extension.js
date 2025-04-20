@@ -59,7 +59,6 @@ function activate(context) {
     // });
     let suppress = vscode.commands.registerCommand('go-shutup.suppress', () => {
         let plap = new details_1.Thing();
-        plap.showMessage(`${details_1.Thing.called}`);
         const activeEditor = vscode.window.activeTextEditor;
         const filename = plap.getFileName();
         if (filename == undefined) {
@@ -75,7 +74,7 @@ function activate(context) {
         const cliPath = path.join(extensionPath, "shutup.exe");
         const executeHere = extensionPath;
         //this bit of code here will populate output/variables.json
-        cp.execFile(cliPath, ['random'], {
+        cp.execFile(cliPath, [`random ${plap.getCurrFilePath()}`], {
             cwd: executeHere, // we've set executeHere to the root dir of the extension because that's where the output dir is.
             shell: true, //idk why this arg is here.
         }, (error, stdout, stderr) => {
@@ -89,9 +88,9 @@ function activate(context) {
         const filepath = plap.getCurrFilePath();
         if (filepath == undefined)
             plap.showError("Is this a file even? You're on your own.");
-        //read from results.json
-        let unusedVars = plap.readVariables();
-        plap.insertVariables(unusedVars, 0);
+        //read from results.json and write to file.
+        let variableArr = plap.readVariables();
+        plap.insertVariables(variableArr);
     });
     //steps
     //1. check if the file is even a golang file
