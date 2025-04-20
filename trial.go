@@ -10,13 +10,14 @@ import (
 // add a dict field and a fset field that can access line and column numbers
 type MyVisitor struct {
 	fset *token.FileSet
-	hmap map[string][]int
+	hmap map[string]int
 }
 
 func (r MyVisitor) Visit(node ast.Node) ast.Visitor {
 	if node == nil {
 		return nil
 	}
+	fmt.Println(r.fset.Position(node.Pos()))
 	if fn, ok := node.(*ast.FuncDecl); ok {
 		fmt.Printf("Function foundar: %s\n", fn.Name.Name)
 	}
@@ -67,7 +68,10 @@ func Subtr(a, b int) int {
 
 	file, _ := parser.ParseFile(fset, "", src, parser.ParseComments)
 
-	ast.Walk(MyVisitor{}, file)
+	hmap := make(map[string]int)
+
+	myStruc := MyVisitor{fset: fset, hmap: hmap}
+	ast.Walk(myStruc, file)
 }
 
 func two() {

@@ -1,0 +1,29 @@
+{
+  "Variables": [
+    {
+      "VarNames": [
+        "x"
+      ],
+      "LineNumber": 14
+    },
+    {
+      "VarNames": [
+        "a",
+        "b"
+      ],
+      "LineNumber": 15
+    },
+    {
+      "VarNames": [
+        "tree"
+      ],
+      "LineNumber": 16
+    },
+    {
+      "VarNames": [
+        "tree"
+      ],
+      "LineNumber": 17
+    }
+  ]
+}
