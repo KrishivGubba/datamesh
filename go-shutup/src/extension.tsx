@@ -4,6 +4,7 @@ import * as vscode from 'vscode';
 import {Thing} from './details';
 import * as cp from 'child_process';
 import * as path from 'path';
+import { VarLocation } from './details';
 
 //helper functions
 
@@ -29,7 +30,6 @@ export function activate(context: vscode.ExtensionContext) {
 
 	let suppress = vscode.commands.registerCommand('go-shutup.suppress', () => {
 		let plap = new Thing()
-		plap.showMessage(`${Thing.called}`)
 		const activeEditor = vscode.window.activeTextEditor;
 		const filename = plap.getFileName();
 		if (filename==undefined){
@@ -52,7 +52,7 @@ export function activate(context: vscode.ExtensionContext) {
 		const executeHere = extensionPath;
 
 		//this bit of code here will populate output/variables.json
-		cp.execFile(cliPath, ['random'],{
+		cp.execFile(cliPath, [`random ${plap.getCurrFilePath()}`],{
             cwd: executeHere, // we've set executeHere to the root dir of the extension because that's where the output dir is.
             shell: true, //idk why this arg is here.
         } ,(error, stdout, stderr) => {
@@ -69,11 +69,12 @@ export function activate(context: vscode.ExtensionContext) {
 		if (filepath == undefined)
 			plap.showError("Is this a file even? You're on your own.")
 
-		//read from results.json
+		//read from results.json and write to file.
 
-		let unusedVars: string[] = plap.readVariables();
+		let variableArr = plap.readVariables();
 
-		plap.insertVariables(unusedVars, 0);
+		plap.insertVariables(variableArr);
+
 	})
 
 	//steps
